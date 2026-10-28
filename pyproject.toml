@@ -1,0 +1,30 @@
+[project]
+name = "fastmcp-201"
+version = "0.1.0"
+description = "MCP 201: grow the FastMCP 101 weather server into one you can govern."
+requires-python = ">=3.12"
+dependencies = [
+    "fastmcp[tasks,code-mode]==4.1.4",
+    "requests>=2.31",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["weather"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = [
+    "lab: runs a lesson end to end with a real server and the network",
+]
